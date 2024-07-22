@@ -9,3 +9,4 @@ chest-xray-masks-and-labels.zip
 tuberculosis-tb-chest-xray-dataset.zip
 .ipynb_checkpoints/
 .virtual_documents/
+.venv
