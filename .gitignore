@@ -2,7 +2,6 @@ model_*
 lost+found
 same_no_layers.zip
 .Trash-1000
-data
 segmentation_data
 kaggle.json
 chest-xray-masks-and-labels.zip
