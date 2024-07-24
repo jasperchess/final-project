@@ -9,3 +9,4 @@ tuberculosis-tb-chest-xray-dataset.zip
 .ipynb_checkpoints/
 .virtual_documents/
 .venv
+.env
