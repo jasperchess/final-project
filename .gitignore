@@ -11,5 +11,4 @@ tuberculosis-tb-chest-xray-dataset.zip
 .venv
 .env
 data
-models
 __pycache__
