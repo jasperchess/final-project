@@ -4,6 +4,12 @@ import os
 
 default_metrics = ['accuracy', 'precision', 'recall', keras.metrics.AUC()]
 
+"""
+    A wrapper around Keras' `load_model` method. This
+    is needed because the Grad-Cam implementation does
+    not work with the loaded model. This method clones
+    the loaded model and uses the loaded models weights.
+"""
 def load_model(
     path,
     optimizer=keras.optimizers.Adam(learning_rate=0.0001),
@@ -23,6 +29,11 @@ def load_model(
     return model
 
 
+"""
+    Saves the results of a model evaluation as a JSON file.
+    This allows for not needing to rerun the full training
+    when running certain blocks in the notebook.
+"""
 # TODO::CITE https://www.geeksforgeeks.org/reading-and-writing-json-to-a-file-in-python/
 def save_results(
     path,
@@ -52,6 +63,11 @@ def save_results(
     with open(os.path.join(path, 'results.json'), "w") as outfile:
         outfile.write(json_object)
 
+
+"""
+    The follow up to the `save_results` method above.
+    This reads the saved JSON results.
+"""
 def load_results(path):
     with open(os.path.join(path, 'results.json'), "r") as openfile:
         return json.load(openfile)

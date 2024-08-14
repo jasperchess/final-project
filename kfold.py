@@ -5,6 +5,12 @@ import os
 import shutil
 import uuid
 
+"""
+    This utitlity function copies the images from the raw
+    directories into their respective train and test folds.
+    This is used in conjuction with the `fold_dataset` method
+    below, inorder to evaluate models using K-Fold.
+"""
 def copy_files_to_fold(train_fold, test_fold, split_dir='./data/folds'):
     train_split = 'train'
     test_split = 'test'
@@ -57,6 +63,16 @@ def copy_files_to_fold(train_fold, test_fold, split_dir='./data/folds'):
     print("Copying test normal set...")
     copy_files(test_tb, os.path.join(split_dir, test_split, tb_class))
 
+
+"""
+    This method uses the Scikit Learn Stratified K-Fold class
+    to split the dataset into 5 folds. Stratified K-Fold is an
+    adapted version of K-Fold which ensures that the class imbalance
+    is represented in each fold. In this case 4:1 Normal:Tuberculosis
+
+    In order to correctly split out the files this method returns the
+    K-Fold split results, as well as the X and y arrays (images and labels)
+"""
 def fold_dataset(normal_dir='./data/Normal/', tb_dir='./data/Tuberculosis/', oversampling=False, undersampling=False):
     tb_metadata = pd.read_excel('./data/Tuberculosis.metadata.xlsx')
     norm_metadata = pd.read_excel('./data/Normal.metadata.xlsx')
