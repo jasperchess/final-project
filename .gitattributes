@@ -4,3 +4,10 @@
 /models/base_line/ckpt/2-checkpoint.model.keras filter=lfs diff=lfs merge=lfs -text
 /models/base_line/ckpt/3-checkpoint.model.keras filter=lfs diff=lfs merge=lfs -text
 /models/base_line/ckpt/4-checkpoint.model.keras filter=lfs diff=lfs merge=lfs -text
+/models/augmentation/ckpt/0-checkpoint.model.keras filter=lfs diff=lfs merge=lfs -text
+/models/augmentation/ckpt/1-checkpoint.model.keras filter=lfs diff=lfs merge=lfs -text
+/models/augmentation/ckpt/2-checkpoint.model.keras filter=lfs diff=lfs merge=lfs -text
+/models/augmentation/ckpt/3-checkpoint.model.keras filter=lfs diff=lfs merge=lfs -text
+/models/augmentation/ckpt/4-checkpoint.model.keras filter=lfs diff=lfs merge=lfs -text
+/models/augmentation_train_1/ckpt/checkpoint.model.keras filter=lfs diff=lfs merge=lfs -text
+/models/augmentation_train_2/ckpt/checkpoint.model.keras filter=lfs diff=lfs merge=lfs -text
