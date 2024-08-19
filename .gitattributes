@@ -12,3 +12,7 @@
 /models/augmentation_train_1/ckpt/checkpoint.model.keras filter=lfs diff=lfs merge=lfs -text
 /models/augmentation_train_2/ckpt/checkpoint.model.keras filter=lfs diff=lfs merge=lfs -text
 /models/augmentation_train_3/ckpt/checkpoint.model.keras filter=lfs diff=lfs merge=lfs -text
+/models/segmentation/resnet34Adamdice_loss/ckpt/checkpoint.model.keras filter=lfs diff=lfs merge=lfs -text
+/models/segmentation/resnet34Adamjaccard_loss/ckpt/checkpoint.model.keras filter=lfs diff=lfs merge=lfs -text
+/results/segmentation/resnet34Adamdice_loss/results.json filter=lfs diff=lfs merge=lfs -text
+/results/segmentation/resnet34Adamjaccard_loss/results.json filter=lfs diff=lfs merge=lfs -text
