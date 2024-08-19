@@ -6,12 +6,11 @@ import numpy as np
 # TODO:: CITE
 # https://keras.io/examples/vision/grad_cam/
 def get_img_array(img_path, size, color_mode='rgb'):
-    # `img` is a PIL image of size 299x299
     img = keras.utils.load_img(img_path, target_size=size, color_mode=color_mode)
-    # `array` is a float32 Numpy array of shape (299, 299, 3)
+    # `array` is a float32 Numpy array of shape (size, size, color_mode == 'grayscale' ? 1 : 3)
     array = keras.utils.img_to_array(img)
     # We add a dimension to transform our array into a "batch"
-    # of size (1, 299, 299, 3)
+    # of size (1, ..., ..., ...)
     array = np.expand_dims(array, axis=0)
     return array
 
