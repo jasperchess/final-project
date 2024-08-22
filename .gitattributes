@@ -65,3 +65,15 @@
 /tensorboard/resnet34-8/0001/execution0/train/events.out.tfevents.1724234850.9c4b0664fa29.10728.16.v2 filter=lfs diff=lfs merge=lfs -text
 /tensorboard/resnet34-8/0002/execution0/train/events.out.tfevents.1724235468.9c4b0664fa29.10728.19.v2 filter=lfs diff=lfs merge=lfs -text
 /tensorboard/resnet34-8/0003/execution0/train/events.out.tfevents.1724235799.9c4b0664fa29.10728.22.v2 filter=lfs diff=lfs merge=lfs -text
+/efficientnetb5-16/trial_0000/checkpoint.weights.h5 filter=lfs diff=lfs merge=lfs -text
+/efficientnetb5-16/trial_0001/checkpoint.weights.h5 filter=lfs diff=lfs merge=lfs -text
+/efficientnetb5-16/trial_0002/checkpoint.weights.h5 filter=lfs diff=lfs merge=lfs -text
+/efficientnetb5-16/trial_0003/checkpoint.weights.h5 filter=lfs diff=lfs merge=lfs -text
+/efficientnetb5-4/trial_0000/checkpoint.weights.h5 filter=lfs diff=lfs merge=lfs -text
+/efficientnetb5-4/trial_0001/checkpoint.weights.h5 filter=lfs diff=lfs merge=lfs -text
+/efficientnetb5-4/trial_0002/checkpoint.weights.h5 filter=lfs diff=lfs merge=lfs -text
+/efficientnetb5-4/trial_0003/checkpoint.weights.h5 filter=lfs diff=lfs merge=lfs -text
+/efficientnetb5-8/trial_0000/checkpoint.weights.h5 filter=lfs diff=lfs merge=lfs -text
+/efficientnetb5-8/trial_0001/checkpoint.weights.h5 filter=lfs diff=lfs merge=lfs -text
+/efficientnetb5-8/trial_0002/checkpoint.weights.h5 filter=lfs diff=lfs merge=lfs -text
+/efficientnetb5-8/trial_0003/checkpoint.weights.h5 filter=lfs diff=lfs merge=lfs -text
