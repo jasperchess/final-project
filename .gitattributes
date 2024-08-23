@@ -117,3 +117,4 @@
 /xception-fine-tuning/trial_0000/checkpoint.weights.h5 filter=lfs diff=lfs merge=lfs -text
 /xception-fine-tuning/trial_0001/checkpoint.weights.h5 filter=lfs diff=lfs merge=lfs -text
 /xception-fine-tuning/trial_0002/checkpoint.weights.h5 filter=lfs diff=lfs merge=lfs -text
+/scratch_pads/segmentation.ipynb filter=lfs diff=lfs merge=lfs -text
