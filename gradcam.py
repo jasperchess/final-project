@@ -50,10 +50,14 @@ def make_gradcam_heatmap(img_array, model, last_conv_layer_name = None, layer_id
     heatmap = tf.maximum(heatmap, 0) / tf.math.reduce_max(heatmap)
     return heatmap.numpy()
 
-def overlayed_gradcam(img_path, heatmap, alpha=0.4):
+def overlayed_gradcam(img_path, heatmap, color_mode='grayscale', transform_image=None, alpha=0.4):
     # Load the original image
-    img = keras.utils.load_img(img_path)
+    img = keras.utils.load_img(img_path, color_mode=color_mode)
     img = keras.utils.img_to_array(img)
+
+    if transform_image != None:
+        img = transform_image(img)
+        img = img * 255
 
     # Rescale heatmap to a range 0-255
     heatmap = np.uint8(255 * heatmap)
