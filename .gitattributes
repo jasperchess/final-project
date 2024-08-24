@@ -118,3 +118,8 @@
 /xception-fine-tuning/trial_0001/checkpoint.weights.h5 filter=lfs diff=lfs merge=lfs -text
 /xception-fine-tuning/trial_0002/checkpoint.weights.h5 filter=lfs diff=lfs merge=lfs -text
 /scratch_pads/segmentation.ipynb filter=lfs diff=lfs merge=lfs -text
+/tensorboard/xception-evaluation/fold-1/train/events.out.tfevents.1724502136.Jaspers-MBP.home.79636.16.v2 filter=lfs diff=lfs merge=lfs -text
+/tensorboard/xception-evaluation/fold-2/train/events.out.tfevents.1724503157.Jaspers-MBP.home.79636.18.v2 filter=lfs diff=lfs merge=lfs -text
+/tensorboard/xception-evaluation/fold-3/train/events.out.tfevents.1724503910.Jaspers-MBP.home.79636.20.v2 filter=lfs diff=lfs merge=lfs -text
+/tensorboard/xception-evaluation/fold-4/train/events.out.tfevents.1724505499.Jaspers-MBP.home.79636.22.v2 filter=lfs diff=lfs merge=lfs -text
+/tensorboard/xception-evaluation/fold-5/train/events.out.tfevents.1724506503.Jaspers-MBP.home.79636.24.v2 filter=lfs diff=lfs merge=lfs -text
