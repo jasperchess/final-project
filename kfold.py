@@ -1,4 +1,4 @@
-from sklearn.model_selection import StratifiedKFold
+from sklearn.model_selection import StratifiedKFold, KFold
 import pandas as pd
 import numpy as np
 import os
@@ -58,9 +58,9 @@ def copy_files_to_fold(train_fold, test_fold, split_dir='./data/folds'):
     print("Copying test normal set...")
     copy_files(test_normal, os.path.join(split_dir, test_split, normal_class))
 
-    print("Copying train normal set...")
+    print("Copying train TB set...")
     copy_files(train_tb, os.path.join(split_dir, train_split, tb_class))
-    print("Copying test normal set...")
+    print("Copying test TB set...")
     copy_files(test_tb, os.path.join(split_dir, test_split, tb_class))
 
 
@@ -73,7 +73,7 @@ def copy_files_to_fold(train_fold, test_fold, split_dir='./data/folds'):
     In order to correctly split out the files this method returns the
     K-Fold split results, as well as the X and y arrays (images and labels)
 """
-def fold_dataset(normal_dir='./data/Normal/', tb_dir='./data/Tuberculosis/', oversampling=False, undersampling=False):
+def fold_dataset(normal_dir='./data/Normal/', tb_dir='./data/Tuberculosis/'):
     tb_metadata = pd.read_excel('./data/Tuberculosis.metadata.xlsx')
     norm_metadata = pd.read_excel('./data/Normal.metadata.xlsx')
 
@@ -81,9 +81,6 @@ def fold_dataset(normal_dir='./data/Normal/', tb_dir='./data/Tuberculosis/', ove
     norm_metadata['tuberculosis'] = 0
     tb_metadata['FILE NAME'] = tb_dir + tb_metadata['FILE NAME']
     norm_metadata['FILE NAME'] = normal_dir + norm_metadata['FILE NAME']
-
-    if undersampling:
-        norm_metadata = norm_metadata.head(len(tb_metadata))
 
     metadata = pd.concat([tb_metadata, norm_metadata])
     metadata.rename(columns={'FILE NAME': 'filename'}, inplace=True)
@@ -97,3 +94,38 @@ def fold_dataset(normal_dir='./data/Normal/', tb_dir='./data/Tuberculosis/', ove
     skf.get_n_splits(X, y)
 
     return skf.split(X, y), X, y
+
+SEGMENTATION_FOLDS = './segmentation_data/folds'
+def fold_segmentation_dataset(images_dir='./segmentation_data/images', masks_dir='./segmentation_data/masks'):
+    X = np.array([f for f in os.listdir(images_dir) if os.path.isfile(os.path.join(images_dir, f))])
+    y = np.array([f for f in os.listdir(masks_dir) if os.path.isfile(os.path.join(masks_dir, f))])
+
+    kf = KFold(n_splits=5, shuffle=True)
+    kf.get_n_splits(X)
+
+    return kf.split(X), X, y
+
+def copy_segmentation_dataset_to_folds(train_data, test_data, split_dir=SEGMENTATION_FOLDS, images_dir='./segmentation_data/images', masks_dir='./segmentation_data/masks'):
+    if os.path.exists(split_dir):
+        shutil.rmtree(split_dir)
+
+    train_images_dir = os.path.join(split_dir, 'train', 'images')
+    train_masks_dir = os.path.join(split_dir, 'train', 'masks')
+    test_images_dir = os.path.join(split_dir, 'test', 'images')
+    test_masks_dir = os.path.join(split_dir, 'test', 'masks')
+
+    print("Creating fold dirs...")
+    for dir in [train_images_dir, train_masks_dir, test_images_dir, test_masks_dir]:
+        os.makedirs(dir)
+
+    print("Copying the training data...")
+    # Copying the training data into the fold
+    for (image_name, mask_name) in list(zip(train_data['images'], train_data['masks'])):
+        shutil.copy(os.path.join(images_dir, image_name), os.path.join(train_images_dir, image_name))
+        shutil.copy(os.path.join(masks_dir, mask_name), os.path.join(train_masks_dir, mask_name))
+
+    print("Copying the test data...")
+    # Copying the training data into the fold
+    for (image_name, mask_name) in list(zip(test_data['images'], test_data['masks'])):
+        shutil.copy(os.path.join(images_dir, image_name), os.path.join(test_images_dir, image_name))
+        shutil.copy(os.path.join(masks_dir, mask_name), os.path.join(test_masks_dir, mask_name))
