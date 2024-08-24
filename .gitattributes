@@ -123,3 +123,8 @@
 /tensorboard/xception-evaluation/fold-3/train/events.out.tfevents.1724503910.Jaspers-MBP.home.79636.20.v2 filter=lfs diff=lfs merge=lfs -text
 /tensorboard/xception-evaluation/fold-4/train/events.out.tfevents.1724505499.Jaspers-MBP.home.79636.22.v2 filter=lfs diff=lfs merge=lfs -text
 /tensorboard/xception-evaluation/fold-5/train/events.out.tfevents.1724506503.Jaspers-MBP.home.79636.24.v2 filter=lfs diff=lfs merge=lfs -text
+/tensorboard/inception-evaluation/fold-1/train/events.out.tfevents.1724510821.Jaspers-MBP.home.6410.0.v2 filter=lfs diff=lfs merge=lfs -text
+/tensorboard/inception-evaluation/fold-2/train/events.out.tfevents.1724512284.Jaspers-MBP.home.6410.2.v2 filter=lfs diff=lfs merge=lfs -text
+/tensorboard/inception-evaluation/fold-3/train/events.out.tfevents.1724513882.Jaspers-MBP.home.6410.4.v2 filter=lfs diff=lfs merge=lfs -text
+/tensorboard/inception-evaluation/fold-4/train/events.out.tfevents.1724516709.Jaspers-MBP.home.6410.6.v2 filter=lfs diff=lfs merge=lfs -text
+/tensorboard/inception-evaluation/fold-5/train/events.out.tfevents.1724519718.Jaspers-MBP.home.6410.8.v2 filter=lfs diff=lfs merge=lfs -text
