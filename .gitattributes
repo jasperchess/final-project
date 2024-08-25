@@ -128,3 +128,8 @@
 /tensorboard/inception-evaluation/fold-3/train/events.out.tfevents.1724513882.Jaspers-MBP.home.6410.4.v2 filter=lfs diff=lfs merge=lfs -text
 /tensorboard/inception-evaluation/fold-4/train/events.out.tfevents.1724516709.Jaspers-MBP.home.6410.6.v2 filter=lfs diff=lfs merge=lfs -text
 /tensorboard/inception-evaluation/fold-5/train/events.out.tfevents.1724519718.Jaspers-MBP.home.6410.8.v2 filter=lfs diff=lfs merge=lfs -text
+/tensorboard/efficientnet-evaluation/fold-1/train/events.out.tfevents.1724536323.Jaspers-MBP.home.21162.0.v2 filter=lfs diff=lfs merge=lfs -text
+/tensorboard/efficientnet-evaluation/fold-2/train/events.out.tfevents.1724538670.Jaspers-MBP.home.21162.2.v2 filter=lfs diff=lfs merge=lfs -text
+/tensorboard/efficientnet-evaluation/fold-3/train/events.out.tfevents.1724540638.Jaspers-MBP.home.21162.4.v2 filter=lfs diff=lfs merge=lfs -text
+/tensorboard/efficientnet-evaluation/fold-4/train/events.out.tfevents.1724542801.Jaspers-MBP.home.21162.6.v2 filter=lfs diff=lfs merge=lfs -text
+/tensorboard/efficientnet-evaluation/fold-5/train/events.out.tfevents.1724547766.Jaspers-MBP.home.21162.8.v2 filter=lfs diff=lfs merge=lfs -text
