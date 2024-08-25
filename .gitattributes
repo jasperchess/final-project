@@ -1,3 +1,4 @@
+*.keras filter=lfs diff=lfs merge=lfs -text
 /three_classification.ipynb filter=lfs diff=lfs merge=lfs -text
 /models/base_line/ckpt/0-checkpoint.model.keras filter=lfs diff=lfs merge=lfs -text
 /models/base_line/ckpt/1-checkpoint.model.keras filter=lfs diff=lfs merge=lfs -text
