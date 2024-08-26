@@ -31,17 +31,20 @@ def visualize_confusion_matrices(predicted_y, true_y, title):
     plot_confusion_matrix(mean_matrix, 'Mean Confusion Matrix')
     plt.show()
 
+def plot_loss_curve(loss, val_loss):
+    plt.plot(loss, label='loss')
+    plt.plot(val_loss, label='val_loss')
+    plt.xlabel('Epoch')
+    plt.ylabel('Loss')
+    plt.legend()
+
 def visualize_history_val_loss(loss, val_loss, title):
     plt.figure(figsize=(20, 15))
     plt.suptitle(title, fontsize=18)
 
     for i in range(len(loss)):
         plt.subplot(3, 3, i + 1)
-        plt.plot(loss[i][1:], label='loss')
-        plt.plot(val_loss[i][1:], label='val_loss')
-        plt.xlabel('Epoch')
-        plt.ylabel('Loss')
-        plt.legend()
+        plot_loss_curve(loss[i], val_loss[i])
 
     plt.show()
 
