@@ -73,10 +73,25 @@ def copy_files_to_fold(train_fold, test_fold, split_dir='./data/folds'):
     In order to correctly split out the files this method returns the
     K-Fold split results, as well as the X and y arrays (images and labels)
 """
-def fold_dataset(normal_dir='./data/Normal/', tb_dir='./data/Tuberculosis/'):
+def fold_dataset(normal_dir='./data/Normal/', tb_dir='./data/Tuberculosis/', undersampling=False, oversampling=False):
+    assert undersampling != True and undersampling != oversampling
     tb_metadata = pd.read_excel('./data/Tuberculosis.metadata.xlsx')
     norm_metadata = pd.read_excel('./data/Normal.metadata.xlsx')
 
+    if undersampling == True:
+        norm_metadata = norm_metadata[:len(tb_metadata)]
+
+    if oversampling == True:
+        majority_class_len = len(norm_metadata)
+        tb_np = tb_metadata.to_numpy()
+        tb_np = np.resize(tb_np, majority_class_len)
+        tb_metadata = pd.DataFrame(
+            data=tb_np,
+            index=tb_metadata.index,
+            columns=tb_metadata.columns
+        )
+
+    print(len(tb_metadata))
     tb_metadata['tuberculosis'] = 1
     norm_metadata['tuberculosis'] = 0
     tb_metadata['FILE NAME'] = tb_dir + tb_metadata['FILE NAME']
