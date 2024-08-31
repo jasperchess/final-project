@@ -4,20 +4,41 @@ import numpy as np
 import os
 import shutil
 import uuid
+import cv2
+import keras
 
+def augment(img):
+    augment = keras.Sequential([
+        keras.layers.RandomFlip(),
+        keras.layers.RandomRotation(0.2)
+    ])
+
+    return augment(img)
 """
     This utitlity function copies the images from the raw
     directories into their respective train and test folds.
     This is used in conjuction with the `fold_dataset` method
     below, inorder to evaluate models using K-Fold.
 """
-def copy_files_to_fold(train_fold, test_fold, split_dir='./data/folds'):
+def copy_files_to_fold(train_fold, test_fold, augment_train=None, augment_test=None, split_dir='./data/folds'):
     train_split = 'train'
     test_split = 'test'
     splits = [train_split, test_split]
     normal_class = 'normal'
     tb_class = 'tuberculosis'
     classes = [normal_class, tb_class]
+
+    for i, _ in enumerate(train_fold):
+        if augment_train[i] == True:
+            split = train_fold[i].split(".")
+            split[0] += '_AUGMENT'
+            train_fold[i] = '.'.join(split)
+
+    for i, _ in enumerate(test_fold):
+        if augment_test[i] == True:
+            split = test_fold[i].split(".")
+            split[0] += '_AUGMENT'
+            test_fold[i] = '.'.join(split)
 
     if os.path.exists(split_dir):
         print("Removing existing dataset")
@@ -35,9 +56,8 @@ def copy_files_to_fold(train_fold, test_fold, split_dir='./data/folds'):
             norm = "Normal" in filepath
             normal_filter.append(norm)
             tb_filter.append(not norm)
-                             
-        return np.array(normal_filter), np.array(tb_filter)
 
+        return np.array(normal_filter), np.array(tb_filter)
 
     base_normal_filter, base_tb_filter = get_filters(train_fold)
     train_normal = train_fold[base_normal_filter]
@@ -51,7 +71,15 @@ def copy_files_to_fold(train_fold, test_fold, split_dir='./data/folds'):
     def copy_files(file_list, dst_dir):
         for file in file_list:
             filename = uuid.uuid4().hex[:6].upper() + '.png'
-            shutil.copy(file, os.path.join(dst_dir, filename))
+            dest = os.path.join(dst_dir, filename)
+
+            if '_AUGMENT' in file:
+                tmp = file.replace('_AUGMENT', '')
+                img = cv2.imread(tmp)
+                img = augment(img)
+                cv2.imwrite(dest, img.numpy())
+            else:
+                shutil.copy(file, dest)
 
     print("Copying train normal set...")
     copy_files(train_normal, os.path.join(split_dir, train_split, normal_class))
