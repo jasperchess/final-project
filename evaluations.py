@@ -32,8 +32,8 @@ def visualize_confusion_matrices(predicted_y, true_y, title):
     plt.show()
 
 def plot_loss_curve(loss, val_loss):
-    plt.plot(loss, label='loss')
-    plt.plot(val_loss, label='val_loss')
+    plt.plot(loss, label='Loss')
+    plt.plot(val_loss, label='Validation Loss')
     plt.xlabel('Epoch')
     plt.ylabel('Loss')
     plt.legend()

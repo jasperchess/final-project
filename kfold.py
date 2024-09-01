@@ -28,17 +28,19 @@ def copy_files_to_fold(train_fold, test_fold, augment_train=None, augment_test=N
     tb_class = 'tuberculosis'
     classes = [normal_class, tb_class]
 
-    for i, _ in enumerate(train_fold):
-        if augment_train[i] == True:
-            split = train_fold[i].split(".")
-            split[0] += '_AUGMENT'
-            train_fold[i] = '.'.join(split)
+    if augment_train != None:
+        for i, _ in enumerate(train_fold):
+            if augment_train[i] == True:
+                split = train_fold[i].split(".")
+                split[0] += '_AUGMENT'
+                train_fold[i] = '.'.join(split)
 
-    for i, _ in enumerate(test_fold):
-        if augment_test[i] == True:
-            split = test_fold[i].split(".")
-            split[0] += '_AUGMENT'
-            test_fold[i] = '.'.join(split)
+    if augment_train != None:
+        for i, _ in enumerate(test_fold):
+            if augment_test[i] == True:
+                split = test_fold[i].split(".")
+                split[0] += '_AUGMENT'
+                test_fold[i] = '.'.join(split)
 
     if os.path.exists(split_dir):
         print("Removing existing dataset")
@@ -70,6 +72,9 @@ def copy_files_to_fold(train_fold, test_fold, augment_train=None, augment_test=N
     # Function to copy files to their respective directories
     def copy_files(file_list, dst_dir):
         for file in file_list:
+            if os.path.exists(file) != True:
+                continue
+
             filename = uuid.uuid4().hex[:6].upper() + '.png'
             dest = os.path.join(dst_dir, filename)
 
@@ -124,6 +129,34 @@ def fold_dataset(normal_dir='./data/Normal/', tb_dir='./data/Tuberculosis/', und
 
     y = metadata['tuberculosis'].to_numpy()
     X = metadata['filename'].to_numpy()
+
+    skf = StratifiedKFold(n_splits=5, shuffle=True)
+    skf.get_n_splits(X, y)
+
+    return skf.split(X, y), X, y
+
+"""
+    This method uses the Scikit Learn Stratified K-Fold class
+    to split the dataset into 5 folds. Stratified K-Fold is an
+    adapted version of K-Fold which ensures that the class imbalance
+    is represented in each fold. In this case 4:1 Normal:Tuberculosis
+
+    In order to correctly split out the files this method returns the
+    K-Fold split results, as well as the X and y arrays (images and labels)
+"""
+def fold_segmented_classification(segmented_dir='./segmented_classification/overlayed_out', undersampling=False):
+    all_files = np.array([os.path.join(segmented_dir, f) for f in os.listdir(segmented_dir) if os.path.isfile(os.path.join(segmented_dir, f))])
+    normal_idx = [('Normal' in f) for f in all_files]
+    tb_idx = [('Tuberculosis' in f) for f in all_files]
+    
+    normal = all_files[normal_idx]
+    tb = all_files[tb_idx]
+
+    if undersampling == True:
+        normal = normal[:len(tb)]
+
+    X = np.concatenate((normal, tb))
+    y = np.array([('Tuberculosis' in f) for f in X]).astype(np.uint8)
 
     skf = StratifiedKFold(n_splits=5, shuffle=True)
     skf.get_n_splits(X, y)
