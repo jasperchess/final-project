@@ -1,10 +1,14 @@
+# Title: Grad-CAM class activation visualization
+# Author: F. Chollet
+# Date: 07/03/2021
+# Available: https://keras.io/examples/vision/grad_cam/
+
 import tensorflow as tf
 import matplotlib as mpl
 import keras
 import numpy as np
 
-# TODO:: CITE
-# https://keras.io/examples/vision/grad_cam/
+
 def get_img_array(img_path, size, color_mode='rgb'):
     img = keras.utils.load_img(img_path, target_size=size, color_mode=color_mode)
     # `array` is a float32 Numpy array of shape (size, size, color_mode == 'grayscale' ? 1 : 3)

@@ -17,7 +17,6 @@ def load_model(
     metrics=default_metrics
 ):
     original_model = keras.models.load_model(path)
-    # TODO::NOTE:: For the report worth mentioning this is required
     model = keras.models.clone_model(original_model)
     model.set_weights(original_model.get_weights())
     model.compile(
@@ -34,7 +33,10 @@ def load_model(
     This allows for not needing to rerun the full training
     when running certain blocks in the notebook.
 """
-# TODO::CITE https://www.geeksforgeeks.org/reading-and-writing-json-to-a-file-in-python/
+# Title: Reading and Writing JSON to a File in Python
+# Author: GeeksForGeeks
+# Date: 19/07/2022
+# Available: https://www.geeksforgeeks.org/reading-and-writing-json-to-a-file-in-python/
 def save_results(
     path,
     histories,
@@ -68,6 +70,10 @@ def save_results(
     The follow up to the `save_results` method above.
     This reads the saved JSON results.
 """
+# Title: Reading and Writing JSON to a File in Python
+# Author: GeeksForGeeks
+# Date: 19/07/2022
+# Available: https://www.geeksforgeeks.org/reading-and-writing-json-to-a-file-in-python/
 def load_results(path):
     with open(os.path.join(path, 'results.json'), "r") as openfile:
         return json.load(openfile)
